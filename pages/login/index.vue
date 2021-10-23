@@ -8,19 +8,20 @@
     <v-card class="card-global" width="650">
       <v-tabs
         v-model="tab"
-        class="indigo darken-4"
+        class="indigo"
         fixed-tabs
-        dark
         icons-and-text
       >
         <v-tabs-slider></v-tabs-slider>
 
         <v-tab light href="#tab-1"
+        class="tab-a"
           >Connexion
           <v-icon>mdi-account</v-icon>
         </v-tab>
 
         <v-tab href="#tab-2"
+        class="tab-a"
           >Inscription
           <v-icon>mdi-account-plus</v-icon>
         </v-tab>
@@ -49,7 +50,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="deep-purple" dark>Connexion</v-btn>
+              <v-btn color="deep-purple" class="btn">Connexion</v-btn>
             </v-card-actions>
           </v-card>
         </v-tab-item>
@@ -118,7 +119,7 @@
 
             <v-row align="center" justify="center" class="pl-3">
               <v-card-actions>
-                <v-btn color="deep-purple" dark>Enregistrer</v-btn>
+                <v-btn color="deep-purple" class="btn">Enregistrer</v-btn>
               </v-card-actions>
             </v-row>
           </v-card>
@@ -146,13 +147,23 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #194C4C;
 }
 .login-title {
   font-family: "Dosis", sans-serif;
 }
+.tab-a {
+color: #3FBFBF;
+}
+
+.btn {
+  color: #3FBFBF;
+  margin: 1em
+}
 
 .troov-special-font {
   font-family: "Fredoka One", cursive;
+  color: #3FBFBF;
 }
 
 .card-global {
