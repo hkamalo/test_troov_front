@@ -35,6 +35,15 @@ export default {
       }
     ],
   },
+  
+  //Runtime Config
+
+   publicRuntimeConfig: {
+    axios: {
+      baseURL: 'http://localhost:5000'
+    }
+  },
+
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],

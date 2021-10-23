@@ -20,18 +20,16 @@
           <v-col cols="2">
             <v-sheet rounded="lg">
               <v-list color="transparent">
-                <v-list-item v-for="item in items" :key="item" link>
+                <v-list-item v-for="object in objectList" :key="object" link>
                   <v-list-item-content>
-                    <v-list-item-title>{{ item }} </v-list-item-title>
+                    <v-list-item-title>{{ object }} </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
 
                 <v-divider class="my-2"></v-divider>
 
                 <v-list-item link color="grey lighten-4">
-                  <v-btn>
-                    Ajoutez un object
-                  </v-btn>
+                  <v-btn> Ajoutez un object </v-btn>
                 </v-list-item>
               </v-list>
             </v-sheet>
@@ -54,6 +52,11 @@ export default {
     links: ["Profile", "Object"],
     items: ["object 1", "object 2", "object 3", "object 4", "object 5"],
   }),
+
+  async asyncData({ $axios, $config }) {
+    const objectList = await $axios.$get(`/:userId/object`);
+    return { objectList };
+  },
 };
 </script>
 
