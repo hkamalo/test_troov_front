@@ -82,7 +82,7 @@ export default {
         },
         endpoints: {
           login: { url: "/authentification/login", method: "post" },
-          logout: { url: "/api/auth/logout", method: "post" },
+          logout: { url: "/authentification/logout", method: "delete" },
           user: false,
         },
         

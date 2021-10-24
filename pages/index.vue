@@ -10,7 +10,7 @@
           </v-btn>
         </div>
 
-        <v-btn>Logout</v-btn>
+        <v-btn type="submit" @click="getLogout()">Logout</v-btn>
       </div>
     </v-app-bar>
 
@@ -47,16 +47,34 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  middleware: 'auth-redirect',
+  middleware: "auth-redirect",
   data: () => ({
     links: ["Profile", "Object"],
     items: ["object 1", "object 2", "object 3", "object 4", "object 5"],
+    objectList: "",
   }),
+  mounted() {
+    this.asyncData();
+  },
+  methods: {
+    async getLogout() {
+      await this.$auth.logout();
+      alert("user logout");
+    },
+    async asyncData() {
+      const userId = await this.$auth.getUser;
+      console.log(userId);
 
-  async asyncData({ $axios, $config }) {
-    const objectList = await $axios.$get(`/:userId/object`);
-    return { objectList };
+      try {
+        const objectList = await $axios.$get(`/user/${userId}/object`);
+        console.log(objectList);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };
 </script>
