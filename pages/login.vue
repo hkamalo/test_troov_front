@@ -143,18 +143,18 @@ export default {
   },
 methods: {
 async userLogin(login) {
-let reponse = await this.$auth.loginWith('local', {
+let response = await this.$auth.loginWith('local', {
   data : {
     email: login.email,
     password: login.password
   }
-
 });
 
-await this.$auth.setUser(response.userId);
+await this.$auth.setUser(response.data.userId);
 
-let redirectUrl = this.$route.query.redirect || '/';
-await this.$router.push('redirectUrl');
+
+let redirectUrl = await this.$route.query.redirect || '/';
+this.$router.push(redirectUrl);
 }
 },
 

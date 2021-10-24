@@ -82,7 +82,7 @@ export default {
         },
         endpoints: {
           login: { url: "/authentification/login", method: "post" },
-          logout: { url: "/authentification/logout", method: "delete" },
+          logout: { url: "/authentification/logout", method: "get" },
           user: false,
         },
         
@@ -90,7 +90,7 @@ export default {
     },
   },
 
-  middleware: ["auth-redirect"],
+  middleware: ["auth-redirect", "auth"],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 };

@@ -50,7 +50,8 @@
 import axios from 'axios';
 
 export default {
-  middleware: "auth-redirect",
+  middleware: "auth",
+  
   data: () => ({
     links: ["Profile", "Object"],
     items: ["object 1", "object 2", "object 3", "object 4", "object 5"],
@@ -65,7 +66,9 @@ export default {
       alert("user logout");
     },
     async asyncData() {
-      const userId = await this.$auth.getUser;
+      console.log(this.$store.state.auth.user);
+
+      const userId = this.$auth.user;
       console.log(userId);
 
       try {
