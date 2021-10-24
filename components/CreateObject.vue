@@ -78,12 +78,8 @@ export default {};
 
 <style lang="scss" scoped>
 .container {
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 20vw;
+  height: 100%;
   color: #194C4C;
 }
 .login-title {
@@ -100,7 +96,6 @@ color: #3FBFBF;
 
 
 .card-global {
-    width: 100%;
   margin: 10em 0 0 0;
   padding: 1em;
 }

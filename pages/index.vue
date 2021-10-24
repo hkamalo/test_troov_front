@@ -22,8 +22,9 @@
           </v-col>
 
           <v-col>
-            <v-sheet min-height="70vh" rounded="lg">
+            <v-sheet class="objectDisplay" min-height="70vh" rounded="lg">
               <!--  -->
+              
               <LazyCreateObject v-if="addObject" />
             </v-sheet>
           </v-col>
@@ -75,6 +76,12 @@ export default {
   width: 100vw;
 }
 
+.objectDisplay{
+width: 60vw;
+display : flex;
+justify-content : center;
+align-items : center;
+}
 .app-menu {
   width: 100%;
   height: 100%;
