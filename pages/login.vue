@@ -32,14 +32,14 @@
           <v-card>
             <v-card-text>
               <v-form>
-                <v-text-field
+                <v-text-field v-model="login.email"
                   id="email"
                   label="Email"
                   name="email"
                   prepend-icon="mdi-account"
                   type="text"
                 ></v-text-field>
-                <v-text-field
+                <v-text-field v-model="login.password"
                   id="password"
                   label="Mot de passe"
                   name="password"
@@ -50,7 +50,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="deep-purple" class="btn">Connexion</v-btn>
+              <v-btn color="deep-purple" class="btn" @click="userLogin(login)">Connexion</v-btn>
             </v-card-actions>
           </v-card>
         </v-tab-item>
@@ -130,13 +130,35 @@
 </template>
 <script>
 export default {
-  name: "SignIn",
+
   data() {
     return {
       tab: null,
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  login: {
+    email: "hk@random.com",
+    password: "test123"
+  }    
     };
   },
+methods: {
+async userLogin(login) {
+let reponse = await this.$auth.loginWith('local', {
+  data : {
+    email: login.email,
+    password: login.password
+  }
+
+});
+
+await this.$auth.setUser(response.userId);
+
+let redirectUrl = this.$route.query.redirect || '/';
+await this.$router.push('redirectUrl');
+}
+},
+
+
 };
 </script>
 <style scoped>

@@ -32,18 +32,17 @@ export default {
         rel: "stylesheet",
         type: "text/css",
         href: "https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap",
-      }
+      },
     ],
   },
-  
+
   //Runtime Config
 
-   publicRuntimeConfig: {
+  publicRuntimeConfig: {
     axios: {
-      baseURL: 'http://localhost:5000'
-    }
+      baseURL: "http://localhost:5000",
+    },
   },
-
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
@@ -62,8 +61,36 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     "@nuxtjs/axios",
+    "@nuxtjs/auth-next",
   ],
 
+  axios: {
+    baseURL: "http://localchost:5000",
+  },
+
+  auth: {
+    redirect: {
+      login: "/login",
+      logout: "/login", 
+      home: "/"
+    },
+    strategies: {
+      local: {
+        token: {
+          required: false,
+          type: false,
+        },
+        endpoints: {
+          login: { url: "/authentification/login", method: "post" },
+          logout: { url: "/api/auth/logout", method: "post" },
+          user: false,
+        },
+        
+      },
+    },
+  },
+
+  middleware: ["auth-redirect"],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 };
