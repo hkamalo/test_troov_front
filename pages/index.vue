@@ -8,7 +8,7 @@
               <v-list color="transparent">
                 <v-list-item v-for="object in objectList" :key="object" link>
                   <v-list-item-content>
-                    <v-list-item-title>{{ object }} </v-list-item-title>
+                    <v-list-item-title>{{ object.name }} </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
 
@@ -53,16 +53,16 @@ export default {
       alert("user logout");
     },
     async asyncData() {
-      console.log(this.$store.state.auth.user);
 
       const userId = this.$auth.user;
       console.log(userId);
 
       try {
         const response = await this.$axios.get(`/user/${userId}/object`);
-        const objectList = response.data;
-        console.log(objectList);
-        return objectList;
+        const dbList = await response.data;
+        console.log(dbList);
+        await this.objectList.push(dbList);
+        return this.objectList.flat();
       } catch (error) {
         console.error(error);
       }
